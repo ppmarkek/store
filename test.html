@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <body>
+        <div class="sex">
+            Men: <input type="checkbox" id="one" onclick="fun1()">
+            Women: <input type="checkbox" id="two" onclick="fun2()">
+        </div>
+        <div class="allstore" id="allstore">
+            <div class="men" id="men">
+
+            </div>
+            <div class="women" id="women">
+
+            </div>
+        </div>
+    </body>
+    <script>
+        let list = document.querySelector('.men')
+        let list2 = document.querySelector('.women')
+        let prk
+        let prk2
+        let ok = false
+        let ok2 = false
+        let products1 = [
+                {
+                "id": 0,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/OrbgtJiuAc7M1yL4KvQjw/de07bf1822a14df039063daa830e9aba/TD1MTHU_SHOE_LEFT_GLOBAL_MENS_TREE_DASHERS_THUNDER.png",
+                "title": "Women's Tree Dashers",
+                "description": "Take tough runs in stride with the Tree Dasher, our delightfully breezy performance shoe. Made with eucalyptus fibre, it breathes and flexes with your every step. Good for your performance. Good for the planet. The Tree Dasher is a true win-win.",
+                "price": 99,
+                "discount": 36,
+                "material": "Light & Breezy Tree",
+                "size": "EU 41",
+                "color": "Thunder (White Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 1,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/5xCdqHpurNr7687f7Mg8Xb/1f23dfcf13bcb1eb86e0dbb7b7377d0d/WZ1MDEN080_SHOE_LEFT_GLOBAL_MENS_WOOL_DASHER_MIZZLE_LOW_DENALI_LIGHT_BLUE.png",
+                "title": "Men's Wool Dasher Mizzles",
+                "description": "Take stormy weather in stride with the running shoe that uses natural materials to give you extra grip and keep your feet cozy and dry on cold, wet runs.",
+                "price": 148,
+                "discount": 0,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 42",
+                "color": "Denali (Light Blue Sole)",
+                "rating": 4,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 5
+                },
+                {
+                "id": 2,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/6rlaEFrmnmwpzZeIvgEjPS/64086862363cf6748ee958af55acd57d/TW1MABC080_SHOE_LEFT_GLOBAL_MENS_TRAIL_RUNNER_SWT_NATURAL_BLACK_BLACK.png.png",
+                "title": "Men's Trail Runners SWT",
+                "description": "Tackle off-road terrain with our first-ever trail shoe. Top-tested for durability, stability, and traction, it’s the sneaker, comfort, and sustainability you love with new ripstop fabric, grippy treads, and stabilizing support to take on any adventure.",
+                "price": 140,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 43",
+                "color": "Natural Black (Black Sole)",
+                "rating": 4,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 5
+                },
+                {
+                "id": 3,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/4hwo2hxAG5TZpgCikzvN8f/b0d19dda1234371aae3ebe4beb3c873d/21Q4_fluff_WDF-PDP-ATF_1600x1600_02.jpg",
+                "title": "Men's Wool Dasher Fluffs",
+                "description": "Performance on the inside, party on the outside. Designed to support every stride with nature-made shock-absorbing materials, these limited edition Dashers let you run your fastest and look your fluffiest.",
+                "price": 148,
+                "discount": 0,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 42",
+                "color": "Natural White (Cloud Pixel Sole)",
+                "rating": 4,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 5
+                },
+                {
+                "id": 4,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/7aJZ8e9C8er0utTjy5pSu4/d0590f25b7fff917e0aa8d89b7d1a2b1/Allbirds_WL_RN_SF_PDP_Natural_Grey_LAT.png",
+                "title": "Men's Wool Runners",
+                "description": "Shop the one that started it all: Our Merino Wool Runners. Our superfine ZQ Merino wool material is incredibly soft and cosy, naturally thermoregulating, and ready for anything.",
+                "price": 115,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 38",
+                "color": "Natural Grey (Light Grey Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 5
+                },
+                {
+                "id": 5,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/4oLF7eyh0cAGuRj6TqySMK/2dee66941ed9a073ec0fe956182e7c7b/Allbirds_TR_RN_SF_PDP_Kauri_Marine_LAT.png",
+                "title": "Men's Tree Runners",
+                "description": "Our breathable, silky-smooth sneaker made with responsibly sourced eucalyptus tree fibre treads lightly in everything you do.",
+                "price": 115,
+                "discount": 0,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 40",
+                "color": "Kauri Marine Blue (White Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 5
+                },
+                {
+                "id": 6,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/73UsKoMMKAXH4xM3WLQp9h/3591bcad1fceb3e550fb1ef17afc8ac8/WP1MTBK_SHOE_LEFT_GLOBAL_MENS_WOOL_PIPER_TRUE_BLACK_WHITE.png",
+                "title": "Men's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 115,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 44",
+                "color": "True Black (White Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 5
+                },
+                {
+                "id": 7,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/41DryTc2dKbrR8D6csHNDj/2",
+                "title": "Men's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 115,
+                "discount": 16,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 44",
+                "color": "Buoyant Blue (Blizzard Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": true,
+                "women": false,
+                "inventory": 4
+                },
+                {
+                "id": 8,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/7b8k7jAF4b2Lzz42YpBYQO/1",
+                "title": "Women's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 145,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 40",
+                "color": "Jet Black (Dark Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 9,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/3pcoFQkBYrNgTW88fooata/2",
+                "title": "Women's Trail Runners SWT",
+                "description": "Tackle off-road terrain with our first-ever trail shoe. Top-tested for durability, stability, and traction, it’s the sneaker, comfort, and sustainability. Made in South Korea.",
+                "price": 145,
+                "discount": 30,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 44",
+                "color": "Diablo (Red Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 10,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/5j8qUlAiAUaUGHhhAwNUEH/1",
+                "title": "Women's Tree Dashers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 115,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 44",
+                "color": "Geyser (Light Blue Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 11,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/6KReTwAZk7Nwf31ULaTGhj/2",
+                "title": "Women's Wool Runner-up Mizzles",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 115,
+                "discount": 0,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 44",
+                "color": "Mizzles Mist (Grey Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 12,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/1fZKa9JZlEDj8jvK10nNjO/2",
+                "title": "Women's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 120,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 44",
+                "color": "Hazy Cocoa (Hazy Cocoa Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 13,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/3lzAaTjslhlCa7QeBt4WT5/1",
+                "title": "Women's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 180,
+                "discount": 0,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 44",
+                "color": "Graphite Brown (Cozy Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 4
+                },
+                {
+                "id": 14,
+                "image": "https://cdn.allbirds.com/image/fetch/q_auto,f_auto/w_530,f_auto,q_auto,b_rgb:f5f5f5/https://cdn.allbirds.com/image/upload/f_auto,q_auto/v1/production/colorway/en-US/images/beLUmvg8EE17DHCbJ5bBT/2",
+                "title": "Women's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 165,
+                "discount": 0,
+                "material": "Light & Breezy Tree",
+                "size": "EU 44",
+                "color": "Multi-Melange (Easy Beige Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                },
+                {
+                "id": 15,
+                "image": "https://cdn.allbirds.com/image/upload/f_auto,q_auto,w_853,b_rgb:f5f5f5/cms/73UsKoMMKAXH4xM3WLQp9h/3591bcad1fceb3e550fb1ef17afc8ac8/WP1MTBK_SHOE_LEFT_GLOBAL_MENS_WOOL_PIPER_TRUE_BLACK_WHITE.png",
+                "title": "Women's Wool Pipers",
+                "description": "Soft for daily wear, this reimagined classic made with natural materials is all about balancing simplicity and exaggeration for versatile styling. Made in South Korea.",
+                "price": 115,
+                "discount": 0,
+                "material": "Soft & Cosy Wool",
+                "size": "EU 44",
+                "color": "True Black (White Sole)",
+                "rating": 3,
+                "createdAt": "2022-01-25T06:56:01.790Z",
+                "men": false,
+                "women": true,
+                "inventory": 5
+                }
+            ]
+
+        function fun1() {
+        var chbox;
+        chbox=document.getElementById('one');
+            if (chbox.checked) {
+                if(ok == false){
+                    for(prk in products1){
+                        ok = true
+                        if(products1[prk].men == true){
+                            if(products1[prk].discount == 0){
+                                if(products1[prk].rating == 3){
+                                    list.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk].title}</h4>
+                                                    <img src="${products1[prk].image}" width="300">
+                                                    <p>size: ${products1[prk].size}</p>
+                                                    <p>price: ${products1[prk].price}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }else if(products1[prk].rating == 4){
+                                    list.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk].title}</h4>
+                                                    <img src="${products1[prk].image}" width="300">
+                                                    <p>size: ${products1[prk].size}</p>
+                                                    <p>price: ${products1[prk].price}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }
+                            }else if(products1[prk].discount > 0){
+                                if(products1[prk].rating == 3){
+                                    list.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk].title}</h4>
+                                                    <img src="${products1[prk].image}" width="300">
+                                                    <p>size: ${products1[prk].size}</p>
+                                                    <del>price: ${products1[prk].price}€</del>
+                                                    <p>discount: ${products1[prk].discount}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }else if(products1[prk].rating == 4){
+                                    list.innerHTML += `
+                                        <div class="post id="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk].title}</h4>
+                                                    <img src="${products1[prk].image}" width="300">
+                                                    <p>size: ${products1[prk].size}</p>
+                                                    <del>price: ${products1[prk].price}€</del>
+                                                    <p>discount: ${products1[prk].discount}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }
+                            }
+                        }
+                    }
+                }else if(ok == true){
+                    document.getElementById("men").style.display = "block"
+                }    
+            }
+            else {
+                document.getElementById("men").style.display = "none"
+            }
+        }
+        
+        function fun2() {
+        var chbox2;
+        chbox2=document.getElementById('two');
+            if (chbox2.checked) {
+                if(ok2 == false){
+                    ok2 = true
+                    for(prk2 in products1){
+                        if(products1[prk2].women == true){
+                            if(products1[prk2].discount == 0){
+                                if(products1[prk2].rating == 3){
+                                    list2.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk2].title}</h4>
+                                                    <img src="${products1[prk2].image}" width="300">
+                                                    <p>size: ${products1[prk2].size}</p>
+                                                    <p>price: ${products1[prk2].price}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }else if(products1[prk2].rating == 4){
+                                    list2.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk2].title}</h4>
+                                                    <img src="${products1[prk2].image}" width="300">
+                                                    <p>size: ${products1[prk2].size}</p>
+                                                    <p>price: ${products1[prk2].price}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }
+                            }else if(products1[prk2].discount > 0){
+                                if(products1[prk2].rating == 3){
+                                    list2.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk2].title}</h4>
+                                                    <img src="${products1[prk2].image}" width="300">
+                                                    <p>size: ${products1[prk2].size}</p>
+                                                    <del>price: ${products1[prk2].price}€</del>
+                                                    <p>discount: ${products1[prk2].discount}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }else if(products1[prk2].rating == 4){
+                                    list2.innerHTML += `
+                                        <div class="post">
+                                            <div class="post2">
+                                                <div class="boots">
+                                                    <h4>${products1[prk2].title}</h4>
+                                                    <img src="${products1[prk2].image}" width="300">
+                                                    <p>size: ${products1[prk2].size}</p>
+                                                    <del>price: ${products1[prk2].price}€</del>
+                                                    <p>discount: ${products1[prk2].discount}€</p>
+                                                    <div class="star">
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star checked"></span>
+                                                        <span id="star" class="fa fa-star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `
+                                }
+                            }
+                        }
+                    }
+                }else if(ok2 == true){
+                    document.getElementById("women").style.display = "block"
+                }
+            }
+            else {
+                document.getElementById("women").style.display = "none"
+            }
+        }
+
+        /*for(prk in products1){
+            if(products1[prk].discount == 0){
+                if(products1[prk].rating == 3){
+                    list.innerHTML += `
+                        <div class="post">
+                            <div class="post2">
+                                <div class="boots">
+                                    <h4>${products1[prk].title}</h4>
+                                    <img src="${products1[prk].image}" width="300">
+                                    <p>size: ${products1[prk].size}</p>
+                                    <p>price: ${products1[prk].price}€</p>
+                                    <div class="star">
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star"></span>
+                                        <span id="star" class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }else if(products1[prk].rating == 4){
+                    list.innerHTML += `
+                        <div class="post">
+                            <div class="post2">
+                                <div class="boots">
+                                    <h4>${products1[prk].title}</h4>
+                                    <img src="${products1[prk].image}" width="300">
+                                    <p>size: ${products1[prk].size}</p>
+                                    <p>price: ${products1[prk].price}€</p>
+                                    <div class="star">
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            }else if(products1[prk].discount > 0){
+                if(products1[prk].rating == 3){
+                    list.innerHTML += `
+                        <div class="post">
+                            <div class="post2">
+                                <div class="boots">
+                                    <h4>${products1[prk].title}</h4>
+                                    <img src="${products1[prk].image}" width="300">
+                                    <p>size: ${products1[prk].size}</p>
+                                    <del>price: ${products1[prk].price}€</del>
+                                    <p>discount: ${products1[prk].discount}€</p>
+                                    <div class="star">
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star"></span>
+                                        <span id="star" class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }else if(products1[prk].rating == 4){
+                    list.innerHTML += `
+                        <div class="post">
+                            <div class="post2">
+                                <div class="boots">
+                                    <h4>${products1[prk].title}</h4>
+                                    <img src="${products1[prk].image}" width="300">
+                                    <p>size: ${products1[prk].size}</p>
+                                    <del>price: ${products1[prk].price}€</del>
+                                    <p>discount: ${products1[prk].discount}€</p>
+                                    <div class="star">
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star checked"></span>
+                                        <span id="star" class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            }
+        }*/
+    </script>
+</html>

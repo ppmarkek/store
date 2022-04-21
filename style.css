@@ -1,0 +1,170 @@
+*
+{
+    scroll-behavior: smooth;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;	
+}
+body{
+    background: #fff;
+    justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+.allstore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+	flex-wrap: wrap;
+	padding: 40px 0;
+}
+.allstore .men .post{
+    left: 120px;
+    display: inline-flex;
+	position: relative;
+	width: 320px;
+	height: 440px;
+	margin: 30px;
+}
+.allstore .men .post .post2{
+    position: absolute;
+    top: 20px;
+	left: 20px;
+	right: 20px;
+	bottom: 20px;
+    background: #faf5f5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.5s;
+}
+.allstore .men .post .post2 .boots{
+    padding: 20px;
+	text-align: center;
+}
+.allstore .men .post .post2 .boots h4{
+    display: flex;
+    white-space: pre-line;
+    justify-content: center;
+    align-items: center;
+}
+.allstore .men .post .post2 .boots p{
+    text-align: -moz-center; 
+    text-align: -webkit-center; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.allstore .men .post .post2 .boots del{
+    display: flex;
+    text-align: -moz-center; 
+    text-align: -webkit-center; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.allstore .men .post .post2 .boots img{
+    display: block; 
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.allstore .men .post .post2:hover{
+    box-shadow: 0 0 10px #cecece;
+    transform: translateY(-15px);
+    transition: 0.5s;
+}
+.allstore .men .post .post2 .boots .star{
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.checked {
+    color: orange;
+}
+.sex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+.sex input{
+    margin: 10px;
+}
+
+
+.allstore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+	flex-wrap: wrap;
+	padding: 40px 0;
+}
+.allstore .women .post{
+    left: 120px;
+    display: inline-flex;
+	position: relative;
+	width: 320px;
+	height: 440px;
+	margin: 30px;
+}
+.allstore .women .post .post2{
+    position: absolute;
+    top: 20px;
+	left: 20px;
+	right: 20px;
+	bottom: 20px;
+    background: #faf5f5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.5s;
+}
+.allstore .women .post .post2 .boots{
+    padding: 20px;
+	text-align: center;
+}
+.allstore .women .post .post2 .boots h4{
+    display: flex;
+    white-space: pre-line;
+    justify-content: center;
+    align-items: center;
+}
+.allstore .women .post .post2 .boots p{
+    text-align: -moz-center; 
+    text-align: -webkit-center; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.allstore .women .post .post2 .boots del{
+    display: flex;
+    text-align: -moz-center; 
+    text-align: -webkit-center; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.allstore .women .post .post2 .boots img{
+    display: block; 
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.allstore .women .post .post2:hover{
+    box-shadow: 0 0 10px #cecece;
+    transform: translateY(-15px);
+    transition: 0.5s;
+}
+.allstore .women .post .post2 .boots .star{
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
